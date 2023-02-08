@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -lapFm
+ls -la -p -F -m
