@@ -1,2 +1,2 @@
 #!/bin/bash
-if [! -e *.html .. ]: then cp *.html .. 
+for file in *.html if [! -e file .. ]: then cp file .. fi done
