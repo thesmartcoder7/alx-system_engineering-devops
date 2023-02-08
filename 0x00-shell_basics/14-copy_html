@@ -1,3 +1,2 @@
 #!/bin/bash
-find . -type f -name "*.html" -exec bash -c 'for file do if [ ! -e "$(dirname "$(dirname "$(pwd)")")/$file" ]; then cp "$file" "$(dirname "$(dirname "$(pwd)")")/"; elif [ "$file" -nt "$(dirname "$(dirname "$(pwd)")")/$file" ]; then cp "$file" "$(dirname "$(dirname "$(pwd)")")/"; fi; done' bash {} +
-
+for file in *.html if [! -e file .. ]: then cp file ..  done
