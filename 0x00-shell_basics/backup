@@ -12,6 +12,11 @@
 # ./backup
 
 zip -r alx-sys-devops.zip ~/alx-course/alx-system_engineering-devops
+# the zip command is used to create the archive
+# the -r flag is used to recursively include all files and subdirectories within
+# alx-sys-devops.zip is the name of the resulting zip
+
 mv alx-sys-devops.zip ~/Documents/zipped/
+# the mv command is responsible for moving the zip to a destination folder "zipped"
 
 exit 0
