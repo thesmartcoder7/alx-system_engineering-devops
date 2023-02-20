@@ -1,2 +1,14 @@
 #!/bin/bash
+
+# Author: Samuel Martins
+# Date Created: 08/02/2023
+# Last Modified: 20/02/2023
+
+# Description:
+# This shows all the files and directories in a directory
+
+# Usage:
+# ./1-listit
+
 ls
+exit 0
