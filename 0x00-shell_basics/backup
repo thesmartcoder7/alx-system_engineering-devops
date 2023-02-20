@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Author: Samuel Martins
+# Date Created: 20/02/2023
+# Last Modified: 20/02/2023
+
+# Description:
+# This script backs up the alx-system_engineering-devops directory
+# and then moves it to a different directory for safe keeping
+
+# usage:
+# ./backup
+
+zip -r alx-sys-devops.zip ~/alx-course/alx-system_engineering-devops
+mv alx-sys-devops.zip ~/Documents/zipped/
+
+exit 0
