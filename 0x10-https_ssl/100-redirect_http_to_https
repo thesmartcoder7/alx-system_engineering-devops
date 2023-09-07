@@ -42,5 +42,5 @@ listen 19018-lb-01
         redirect scheme https code 301 if !{ ssl_fc }
         balance roundrobin
         option forwardfor
-        server 239507-web-01 54.87.212.104:80 check
+        server 239507-web-01 54.237.79.76:80 check
         server 239507-web-02 100.25.156.57:80 check
