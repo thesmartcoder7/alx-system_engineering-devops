@@ -5,3 +5,5 @@ datadir         = /var/lib/mysql
 log-error       = /var/log/mysql/error.log
 symbolic-links=0
 server-id = 2
+relay-log = /var/log/mysql/mysql-relay-bin.log
+log-bin = /var/log/mysql/mysql-bin.log
