@@ -1,40 +1,49 @@
 #!/usr/bin/python3
-''' task 2 module'''
+"""
+this a recursive function that queries the Reddit API,
+parses the title of all hot articles, and prints a 
+sorted count of given keywords
+"""
 
+from collections import Counter
 import requests
 
 
-def count_words(subreddit, word_list, found_list=[], after=None):
-    '''return count of keywords in hot posts titles'''
-    user_agent = {'User-agent': 'test45'}
-    posts = requests.get(
-        f'http://www.reddit.com/r/{subreddit}/hot.json?after={after}',
-        headers=user_agent
-    )
+def count_words(subreddit, word_list, after=None, counts=None):
+    if counts is None:
+        counts = Counter()
 
-    if after is None:
-        word_list = [word.lower() for word in word_list]
-
-    if posts.status_code == 200:
-        posts = posts.json()['data']
-        aft = posts['after']
-        posts = posts['children']
-        for post in posts:
-            title = post['data']['title'].lower()
-            for word in title.split(' '):
-                if word in word_list:
-                    found_list.append(word)
-        if aft is not None:
-            count_words(subreddit, word_list, found_list, aft)
-        else:
-            result = {}
-            for word in found_list:
-                if word.lower() in result.keys():
-                    result[word.lower()] += 1
-                else:
-                    result[word.lower()] = 1
-            for key, value in sorted(result.items(), key=lambda item: item[1],
-                                     reverse=True):
-                print('{}: {}'.format(key, value))
-    else:
+    if not word_list:
+        for word, count in sorted(counts.items(), key=lambda x: (-x[1], x[0])):
+            print(f"{word.lower()}: {count}")
         return
+
+    if subreddit is None:
+        return
+
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
+
+    headers = {
+        "User-Agent": "YourFriendlyNeighbourhood/1.0 (by YourFriendly)"
+    }
+
+    if after:
+        url += f"&after={after}"
+
+    res = requests.get(url, headers=headers)
+
+    if res.status_code == 200:
+        try:
+            data = res.json()
+            posts = data["data"]["children"]
+
+            titles = [post["data"]["title"].lower() for post in posts]
+
+            for word in word_list:
+                counts[word] += titles.count(word.lower())
+
+            after = data["data"]["after"]
+            if after:
+                return count_words(subreddit, word_list, after, counts)
+        except KeyError:
+            return None
