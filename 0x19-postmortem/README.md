@@ -1,4 +1,6 @@
-# Postmortem
+# Webapp Postmortem
+
+![webapp oost mortem](serverload.jpg "Load Balancer issue")
 
 ## Issue Summary
 
